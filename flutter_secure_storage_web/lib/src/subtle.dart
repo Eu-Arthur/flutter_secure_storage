@@ -18,10 +18,10 @@
 library common;
 
 import 'dart:convert' show jsonDecode;
-import 'dart:html';
 import 'dart:js_util' as js_util;
 import 'dart:typed_data';
 
+import 'package:flutter_secure_storage_web/src/JSDart.dart';
 import 'package:flutter_secure_storage_web/src/jsonwebkey.dart' show JsonWebKey;
 import 'package:js/js.dart';
 
@@ -35,6 +35,7 @@ class Promise<T> {
   external Promise(
     void Function(void Function(T result) resolve, Function reject) executor,
   );
+
   external Promise then(
     void Function(T result) onFulfilled, [
     Function onRejected,
@@ -65,8 +66,9 @@ Uint8List bigIntToUint8ListBigInteger(BigInt integer) {
 @JS()
 @anonymous
 class CryptoKeyPair {
-  external CryptoKey get privateKey;
-  external CryptoKey get publicKey;
+  external JSCryptoKey get privateKey;
+
+  external JSCryptoKey get publicKey;
 }
 
 /// Anonymous object to be used for constructing the `algorithm` parameter in
@@ -85,20 +87,35 @@ class CryptoKeyPair {
 @anonymous
 class Algorithm {
   external String get name;
+
   external int get modulusLength;
+
   external Uint8List get publicExponent;
+
   external String get hash;
+
   external int get saltLength;
+
   external TypedData get label;
+
   external String get namedCurve;
-  external CryptoKey get public;
+
+  external JSCryptoKey get public;
+
   external TypedData get counter;
+
   external int get length;
+
   external TypedData get iv;
+
   external TypedData get additionalData;
+
   external int get tagLength;
+
   external TypedData get salt;
+
   external TypedData get info;
+
   external int get iterations;
 
   external factory Algorithm({
@@ -109,7 +126,7 @@ class Algorithm {
     int saltLength,
     TypedData label,
     String namedCurve,
-    CryptoKey public,
+    JSCryptoKey public,
     TypedData counter,
     int length,
     TypedData iv,
@@ -141,31 +158,31 @@ external Promise<ByteBuffer> getRandomValues(TypedData array);
 @JS('crypto.subtle.decrypt')
 external Promise<ByteBuffer> decrypt(
   Algorithm algorithm,
-  CryptoKey key,
+  JSCryptoKey key,
   TypedData data,
 );
 
 @JS('crypto.subtle.encrypt')
 external Promise<ByteBuffer> encrypt(
   Algorithm algorithm,
-  CryptoKey key,
+  JSCryptoKey key,
   TypedData data,
 );
 
 @JS('crypto.subtle.exportKey')
 external Promise<ByteBuffer> exportKey(
   String format,
-  CryptoKey key,
+  JSCryptoKey key,
 );
 
 @JS('crypto.subtle.exportKey')
 external Promise<dynamic> exportJsonWebKey(
   String format,
-  CryptoKey key,
+  JSCryptoKey key,
 );
 
 @JS('crypto.subtle.generateKey')
-external Promise<CryptoKey> generateKey(
+external Promise<JSCryptoKey> generateKey(
   Algorithm algorithm,
   bool extractable,
   List<String> usages,
@@ -182,7 +199,7 @@ external Promise<CryptoKeyPair> generateKeyPair(
 external Promise<ByteBuffer> digest(String algorithm, TypedData data);
 
 @JS('crypto.subtle.importKey')
-external Promise<CryptoKey> importKey(
+external Promise<JSCryptoKey> importKey(
   String format,
   TypedData keyData,
   Algorithm algorithm,
@@ -191,7 +208,7 @@ external Promise<CryptoKey> importKey(
 );
 
 @JS('crypto.subtle.importKey')
-external Promise<CryptoKey> importJsonWebKey(
+external Promise<JSCryptoKey> importJsonWebKey(
   String format,
   dynamic jwk,
   Algorithm algorithm,
@@ -202,14 +219,14 @@ external Promise<CryptoKey> importJsonWebKey(
 @JS('crypto.subtle.sign')
 external Promise<ByteBuffer> sign(
   Algorithm algorithm,
-  CryptoKey key,
+  JSCryptoKey key,
   TypedData data,
 );
 
 @JS('crypto.subtle.verify')
 external Promise<bool> verify(
   Algorithm algorithm,
-  CryptoKey key,
+  JSCryptoKey key,
   TypedData signature,
   TypedData data,
 );
@@ -217,7 +234,7 @@ external Promise<bool> verify(
 @JS('crypto.subtle.deriveBits')
 external Promise<ByteBuffer> deriveBits(
   Algorithm algorithm,
-  CryptoKey key,
+  JSCryptoKey key,
   int length,
 );
 
