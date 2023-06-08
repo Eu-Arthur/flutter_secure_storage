@@ -10,10 +10,16 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_secure_storage_platform_interface: ^1.0.1
+  flutter_secure_storage_platform_interface:
+    git:
+      url: https://github.com/Eu-Arthur/flutter_secure_storage.git
+      path: flutter_secure_storage_platform_interface
   flutter_web_plugins:
     sdk: flutter
   js: ^0.6.7
+  js_wasm:
+    git:
+      url: https://github.com/Eu-Arthur/JS-WASM.git
 
 dev_dependencies:
   lint: ^1.10.0

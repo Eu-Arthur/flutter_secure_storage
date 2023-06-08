@@ -2,8 +2,8 @@ name: flutter_secure_storage_example
 description: Demonstrates how to use the flutter_secure_storage plugin.
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
-  flutter: ">=2.0.0"
+  sdk: ">=3.0.0"
+  flutter: ">=3.10.0"
 
 dependencies:
   flutter:
@@ -23,18 +23,9 @@ dev_dependencies:
     sdk: flutter
   lint: ^2.0.1
   test: any
+  flutter_secure_storage:
+    path: ../
 
 flutter:
   uses-material-design: true
 
-dependency_overrides:
-  flutter_secure_storage_linux:
-    path: ../../flutter_secure_storage_linux
-  flutter_secure_storage_macos:
-    path: ../../flutter_secure_storage_macos
-  flutter_secure_storage_platform_interface:
-    path: ../../flutter_secure_storage_platform_interface
-  flutter_secure_storage_web:
-    path: ../../flutter_secure_storage_web
-  flutter_secure_storage_windows:
-    path: ../../flutter_secure_storage_windows

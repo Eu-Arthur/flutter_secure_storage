@@ -21,9 +21,9 @@ import 'dart:convert' show jsonDecode;
 import 'dart:js_util' as js_util;
 import 'dart:typed_data';
 
-import 'package:flutter_secure_storage_web/src/JSDart.dart';
 import 'package:flutter_secure_storage_web/src/jsonwebkey.dart' show JsonWebKey;
 import 'package:js/js.dart';
+import 'package:js_wasm/JSDart.dart';
 
 export 'jsonwebkey.dart' show JsonWebKey;
 
